@@ -13,7 +13,7 @@ public class WebMagicTest implements PageProcessor {
 
     @Test
     public void testDemo01() {
-        Spider.create(new WebMagicTest()).addUrl("https://github.com/code4craft").thread(5).run();
+        Spider.create(new WebMagicTest()).addUrl("https://github.com/code4craft").setDownloader(new HttpClientDownloader()).thread(5).run();
     }
 
     @Override
