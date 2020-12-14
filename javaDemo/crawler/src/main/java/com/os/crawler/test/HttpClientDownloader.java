@@ -25,10 +25,6 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author 咸鱼
- * @date 2018/12/28 21:22
- */
 public class HttpClientDownloader extends AbstractDownloader {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
