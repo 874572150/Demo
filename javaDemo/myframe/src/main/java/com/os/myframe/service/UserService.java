@@ -4,13 +4,15 @@ import com.os.myframe.common.config.result.ResultCode;
 import com.os.myframe.model.User;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public interface UserService {
     ResultCode register(User user);
 
     ResultCode login(User user);
 
-    List<User> getUserList(User user, Integer page, Integer pageSize);
+    ResultCode getUserList(User user, Integer page, Integer pageSize);
+
+    ResultCode insertUser(User user);
+
+    ResultCode updateUser(User user);
 }

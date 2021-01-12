@@ -1,9 +1,7 @@
 package com.os.myframe.service;
 
-import com.os.myframe.model.Menu;
-
-import java.util.List;
+import com.os.myframe.common.config.result.ResultCode;
 
 public interface MenuService {
-    List<Menu> list();
+    ResultCode list(Integer page, Integer pageSize);
 }

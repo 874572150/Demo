@@ -2,10 +2,7 @@ package com.os.myframe.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -26,7 +23,12 @@ public class User extends BaseModel {
     @Column(name = "nickname")
     private String nickname;
 
-    @OneToOne
+    @Column(name = "role_id")
+    private Long roleId;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id",
+            insertable = false, updatable = false)
     private Role role;
 
 }

@@ -25,18 +25,10 @@ public class ResultCode implements Serializable {
     // 时间戳
     private Long timestamp = System.currentTimeMillis();
 
-    public ResultCode() {}
-
-    public ResultCode(ResultStatus resultStatus, Object data) {
-        this.status = resultStatus.getCode();
-        this.message = resultStatus.getMessage();
-        this.data = data;
-    }
+    private ResultCode() {}
 
     public static ResultCode setSuccess() {
-        ResultCode resultCode = new ResultCode();
-        resultCode.setResultStatus(ResultStatus.SUCCESS);
-        return resultCode;
+        return ResultCode.setSuccess(ResultStatus.SUCCESS);
     }
 
     public static ResultCode setSuccess(Object data) {
@@ -46,22 +38,13 @@ public class ResultCode implements Serializable {
         return resultCode;
     }
 
-    public static ResultCode setFail(Object data) {
-        ResultCode resultCode = new ResultCode();
-        resultCode.setResultStatus(ResultStatus.FAIL);
-        return resultCode;
+    public static ResultCode setFail() {
+        return ResultCode.setFail(ResultStatus.FAIL);
     }
 
     public static ResultCode setFail(ResultStatus resultStatus) {
         ResultCode resultCode = new ResultCode();
         resultCode.setResultStatus(resultStatus);
-        return resultCode;
-    }
-
-    public static ResultCode setFail(ResultStatus resultStatus, Object data) {
-        ResultCode resultCode = new ResultCode();
-        resultCode.setResultStatus(resultStatus);
-        resultCode.setData(data);
         return resultCode;
     }
 

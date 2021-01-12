@@ -1,15 +1,14 @@
 package com.os.myframe.service.impl;
 
-import com.os.myframe.common.utils.TreeUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.os.myframe.common.config.result.ResultCode;
 import com.os.myframe.model.Menu;
 import com.os.myframe.repository.MenuRepository;
 import com.os.myframe.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -17,11 +16,11 @@ public class MenuServiceImpl implements MenuService {
     private MenuRepository menuRepository;
 
     @Override
-    public List<Menu> list() {
-        List<Menu> menus = menuRepository.findAll();
-        Map<String,Object> map = new HashMap<>();
-        map.put("level",1);
-        List<Menu> menusTree = TreeUtil.dataToTree(menus, map,"id","parentId","children", Menu.class);
-        return menusTree;
+    public ResultCode list(Integer page, Integer pageSize) {
+        JSONObject jsonObject = new JSONObject();
+        Page<Menu> menuPage = menuRepository.findAll(PageRequest.of(page, pageSize));
+        jsonObject.put("list", menuPage.getContent());
+        jsonObject.put("totalElements", menuPage.getTotalElements());
+        return ResultCode.setSuccess(jsonObject);
     }
 }

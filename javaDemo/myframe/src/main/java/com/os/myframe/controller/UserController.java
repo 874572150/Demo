@@ -3,12 +3,14 @@ package com.os.myframe.controller;
 import com.os.myframe.common.config.result.ResultCode;
 import com.os.myframe.model.User;
 import com.os.myframe.service.UserService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+/**
+ * @author oushuo
+ * @date 2021/1/11
+ * @description 用户控制层
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -38,17 +40,6 @@ public class UserController {
         return userService.login(user);
     }
 
-    @PostMapping("/index")
-    @RequiresPermissions("/user/index")
-    public Object index(@RequestBody User user) {
-        return "index";
-    }
-
-    @GetMapping("/user")
-    public User getUser(@ModelAttribute User user) {
-        return user;
-    }
-
     /**
      * 获取用户列表
      *
@@ -57,8 +48,31 @@ public class UserController {
      * @param pageSize
      * @return
      */
-    @GetMapping(value = {"/list/{page}/{pageSize}","/list"})
-    public List<User> getUserList(@ModelAttribute User user, @PathVariable(name = "page", required = false) Integer page, @PathVariable(name = "page", required = false) Integer pageSize) {
+    @GetMapping("/list/{page}/{pageSize}")
+    public ResultCode getUserList(@ModelAttribute User user,
+                                  @PathVariable(name = "page") Integer page,
+                                  @PathVariable(name = "pageSize") Integer pageSize) {
         return userService.getUserList(user, page, pageSize);
     }
+
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    @PostMapping
+    public ResultCode insertUser(@RequestBody User user) {
+        return userService.insertUser(user);
+    }
+
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
+    @PutMapping
+    public ResultCode updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
+    }
+
 }
