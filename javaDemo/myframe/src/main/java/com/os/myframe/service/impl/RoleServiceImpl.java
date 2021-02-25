@@ -35,6 +35,8 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public ResultCode getRoleList(Role role, Integer page, Integer pageSize) {
         JSONObject jsonObject = new JSONObject();
+        role = role == null ? new Role() : role;
+        role.setEnabled(true);
         List<Role> roleList = null;
         if (page == null && pageSize == null) {
             roleList = roleRepository.findAll(Example.of(role));
@@ -49,29 +51,29 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 新增角色
+     *
      * @param role
      * @return
      */
     @Override
     public ResultCode insertRole(Role role) {
         Role save = roleRepository.save(role);
-        if (save == null) {
-            return ResultCode.setFail(ResultStatus.INSERT_FAIL);
-        }
-        return ResultCode.setFail(ResultStatus.INSERT_SUCCESS);
+        return save != null ?
+                ResultCode.setFail(ResultStatus.INSERT_SUCCESS) :
+                ResultCode.setFail(ResultStatus.INSERT_FAIL);
     }
 
     /**
      * 修改角色
+     *
      * @param role
      * @return
      */
     @Override
     public ResultCode updateRole(Role role) {
         Role save = roleRepository.save(role);
-        if (save == null) {
-            return ResultCode.setFail(ResultStatus.UPDATE_FAIL);
-        }
-        return ResultCode.setFail(ResultStatus.UPDATE_SUCCESS);
+        return save != null ?
+                ResultCode.setFail(ResultStatus.UPDATE_SUCCESS) :
+                ResultCode.setFail(ResultStatus.UPDATE_FAIL);
     }
 }

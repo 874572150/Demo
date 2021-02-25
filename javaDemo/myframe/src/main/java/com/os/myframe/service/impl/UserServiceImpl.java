@@ -84,6 +84,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResultCode getUserList(User user, Integer page, Integer pageSize) {
+        user = user == null ? new User() : user;
+        user.setEnabled(true);
         JSONObject jsonObject = new JSONObject();
         Page<User> userPage = userRespository.findAll(Example.of(user), PageRequest.of(page, pageSize));
         jsonObject.put("list", userPage.getContent());
@@ -93,29 +95,29 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 新增用户
+     *
      * @param user
      * @return
      */
     @Override
     public ResultCode insertUser(User user) {
         User save = userRespository.save(user);
-        if (save == null){
-            return ResultCode.setFail(ResultStatus.INSERT_FAIL);
-        }
-        return ResultCode.setFail(ResultStatus.INSERT_SUCCESS);
+        return save != null ?
+                ResultCode.setFail(ResultStatus.INSERT_SUCCESS) :
+                ResultCode.setFail(ResultStatus.INSERT_FAIL);
     }
 
     /**
      * 修改用户
+     *
      * @param user
      * @return
      */
     @Override
     public ResultCode updateUser(User user) {
         User save = userRespository.save(user);
-        if (save == null){
-            return ResultCode.setFail(ResultStatus.UPDATE_FAIL);
-        }
-        return ResultCode.setFail(ResultStatus.UPDATE_SUCCESS);
+        return save != null ?
+                ResultCode.setFail(ResultStatus.UPDATE_SUCCESS) :
+                ResultCode.setFail(ResultStatus.UPDATE_FAIL);
     }
 }

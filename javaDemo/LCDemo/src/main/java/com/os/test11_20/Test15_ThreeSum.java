@@ -24,7 +24,7 @@ public class Test15_ThreeSum {
 
     // 排序 + 双指针
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> lists = new ArrayList<>();
+        List<List<Integer>> lists = new ArrayList();
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 2; i++) {
             if (nums[i] + nums[i + 1] > 0) {
