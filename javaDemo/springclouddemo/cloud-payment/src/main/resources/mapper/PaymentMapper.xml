@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.os.cloudPayment.dao.PaymentDao">
+    <resultMap id="BaseResultMap" type="payment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="serial" jdbcType="VARCHAR" property="serial"/>
+    </resultMap>
+
+    <sql id="PaymentField">
+		id,`serial`
+	</sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="PaymentField"/>
+        FROM payment
+    </select>
+
+    <insert id="insert">
+
+    </insert>
+
+    <insert id="batchInsert">
+
+    </insert>
+
+    <update id="update">
+
+    </update>
+
+
+    <delete id="delete">
+
+    </delete>
+
+    <delete id="batchDelete">
+
+    </delete>
+
+    <update id="batchUpdate">
+
+    </update>
+    <update id="updateInputErrorUser">
+		update sys_user set can_login = #{canLogin}, invalid_login =
+		#{invalidLoginNum} where id = #{userid}
+	</update>
+
+
+
+
+
+    <!--<insert id="insertUserRole">-->
+        <!--insert into-->
+        <!--user_role(-->
+        <!--role_id,-->
+        <!--user_id-->
+        <!--)-->
+        <!--values-->
+        <!--(#{roleIds},#{userId})-->
+        <!--&lt;!&ndash;<foreach collection="roleIds" item="item" index="index" separator=",">&ndash;&gt;-->
+        <!--&lt;!&ndash;(&ndash;&gt;-->
+        <!--&lt;!&ndash;#{item},&ndash;&gt;-->
+        <!--&lt;!&ndash;#{userId}&ndash;&gt;-->
+        <!--&lt;!&ndash;)&ndash;&gt;-->
+        <!--&lt;!&ndash;</foreach>&ndash;&gt;-->
+    <!--</insert>-->
+
+</mapper>

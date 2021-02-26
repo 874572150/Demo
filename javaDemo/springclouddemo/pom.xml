@@ -14,17 +14,24 @@
 
     <properties>
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+        <mybatis.version>2.1.2</mybatis.version>
     </properties>
 
     <dependencyManagement>
-        <!-- 定义 spring boot 版本 -->
         <dependencies>
+            <!-- 定义 spring boot 版本 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- 定义 mybatis 版本-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
