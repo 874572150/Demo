@@ -6,13 +6,13 @@
         <result column="serial" jdbcType="VARCHAR" property="serial"/>
     </resultMap>
 
-    <sql id="PaymentFiled">
+    <sql id="PaymentField">
 		id,`serial`
 	</sql>
 
     <select id="findAll" resultMap="BaseResultMap">
         SELECT
-        <include refid="PaymentFiled"/>
+        <include refid="PaymentField"/>
         FROM payment
     </select>
 
