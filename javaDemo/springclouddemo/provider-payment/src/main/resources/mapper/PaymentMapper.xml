@@ -16,8 +16,8 @@
         FROM payment
     </select>
 
-    <insert id="insert">
-
+    <insert id="save">
+        INSERT INTO payment(`serial`) VALUES (#{serial})
     </insert>
 
     <insert id="batchInsert">

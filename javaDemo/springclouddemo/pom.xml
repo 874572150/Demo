@@ -9,8 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>cloud-payment</module>
+        <module>provider-payment</module>
         <module>consumer-order</module>
+        <module>api-common</module>
     </modules>
 
     <properties>

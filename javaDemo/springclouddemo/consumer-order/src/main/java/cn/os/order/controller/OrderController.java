@@ -23,14 +23,18 @@ public class OrderController {
 
     private static final String PAYMENT_URL = "http://localhost:9001";
 
-    @GetMapping
-    public ResultCode create(Payment payment) {
-        return restTemplate.postForObject(PAYMENT_URL + "", payment, ResultCode.class);
-    }
+//    @GetMapping
+//    public ResultCode create(Payment payment) {
+//        return restTemplate.postForObject(PAYMENT_URL + "", payment, ResultCode.class);
+//    }
 
     @GetMapping
     public ResultCode findAll() {
         return restTemplate.getForObject(PAYMENT_URL + "/payment", ResultCode.class);
     }
 
+    @GetMapping("/save")
+    public ResultCode save(Payment payment) {
+        return restTemplate.postForObject(PAYMENT_URL+"/payment",payment,ResultCode.class);
+    }
 }

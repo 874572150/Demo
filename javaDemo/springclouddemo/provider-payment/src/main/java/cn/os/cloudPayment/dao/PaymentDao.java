@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PaymentDao {
     List<Payment> findAll();
+
+    boolean save(Payment payment);
 }

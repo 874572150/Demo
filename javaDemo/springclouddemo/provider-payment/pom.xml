@@ -11,7 +11,7 @@
         <relativePath>pom.xml</relativePath>
     </parent>
 
-    <artifactId>cloud-payment</artifactId>
+    <artifactId>provider-payment</artifactId>
 
     <dependencies>
         <!-- spring boot web -->
