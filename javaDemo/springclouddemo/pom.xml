@@ -12,10 +12,15 @@
         <module>provider-payment</module>
         <module>consumer-order</module>
         <module>api-common</module>
+        <module>eureka-server</module>
+        <module>eureka-server7001</module>
+        <module>eureka-server7002</module>
+        <module>provider-payment9002</module>
     </modules>
 
     <properties>
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <mybatis.version>2.1.2</mybatis.version>
     </properties>
 
@@ -29,12 +34,21 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- 定义 spring cloud 版本-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- 定义 mybatis 版本-->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

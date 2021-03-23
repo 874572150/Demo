@@ -1,7 +1,9 @@
 package cn.os.order.controller;
 
-import cn.os.order.common.result.ResultCode;
-import cn.os.order.pojo.Payment;
+import cn.os.common.pojo.Payment;
+import cn.os.common.result.ResultCode;
+//import cn.os.order.common.result.ResultCode;
+//import cn.os.order.pojo.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,8 @@ public class OrderController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String PAYMENT_URL = "http://localhost:9001";
+//    private static final String PAYMENT_URL = "http://localhost:9001";
+    private static final String PAYMENT_URL = "http://PAYMENT";
 
 //    @GetMapping
 //    public ResultCode create(Payment payment) {
