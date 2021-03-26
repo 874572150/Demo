@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- 标题 -->
+        <h1>Tic-tac-toe Simulator</h1>
+        <!-- 棋盘 -->
+        <div id="board"></div>
+        <!-- 这里是用于提示的，后面的功能会用到 -->
+        <div id="tips"></div>
+        <!-- 按钮 -->
+        <div id="but"></div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // 棋盘
+    let pattern = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ];
+    //是否可以下棋
+    let isAction = false;
+    //是否可以开始
+    let isStart = false;
+
+    let chessSum = 3;
+    //玩家id ❌ is 2!' : '⭕️ is 1!
+    let chess = 1;
+
+    // 是否有玩家胜利
+    let hasWinner = false;
+
+    build();
+
+    /** 渲染棋盘 */
+    function build() {
+        // 获取棋盘元素
+        let board = document.getElementById('board');
+        board.innerHTML = '';
+        // 填充棋盘
+        for (let y = 0; y < 3; y++) {
+            for (let x = 0; x < 3; x++) {
+                let cell = document.createElement('div');
+                cell.classList.add('cell');
+
+                // 创建圆圈棋子
+                let circle = document.createElement('i');
+                circle.classList.add('iconfont', 'icon-circle', 'blue');
+                // 创建叉叉棋子
+                let cross = document.createElement('i');
+                cross.classList.add('iconfont', 'icon-cross', 'purple');
+                // 创建空棋子
+                let empty = document.createElement('i');
+
+                let chessIcon = pattern[y][x] == 2 ? cross : pattern[y][x] == 1 ? circle : empty;
+                cell.appendChild(chessIcon);
+                cell.addEventListener('click', () => move(x, y)); // 添加监听事件
+                board.appendChild(cell);
+
+                // replayBtn();
+            }
+        }
+    }
+
+    /**
+     * 把棋子放入棋盘
+     *
+     *   - 先把当前棋子代号给予当前 x，y 位置的元素
+     *
+     * @param {Number} x x轴
+     * @param {Number} y y轴
+     */
+    function move(x, y) {
+        if (pattern[y][x] != 0) {
+            return;
+        }
+        pattern[y][x] = 1;
+        // 这里加入了胜负判断
+        if (check(pattern)) {
+            console.log('game over!')
+        }
+
+    }
+
+    /**
+     * 检查棋盘中的所有棋子
+     *
+     *  - 找出是否已经有棋子获胜了
+     *  - 有三个棋子连成一线就属于赢了
+     *
+     * @param {Array} pattern 棋盘数据
+     * @param {Number} chess 棋子代号
+     * @return {Boolean}
+     */
+    function check(pattern, chess) {
+        // 首先检查所有横行
+        for (let i = 0; i < 3; i++) {
+            let win = true;
+            for (let j = 0; j < 3; j++) {
+                if (pattern[i][j] !== chess) win = false;
+            }
+            if (win) return true;
+        }
+
+        // 检查竖行
+        for (let i = 0; i < 3; i++) {
+            let win = true;
+            for (let j = 0; j < 3; j++) {
+                if (pattern[j][i] !== chess) win = false;
+            }
+            if (win) return true;
+        }
+
+        // 检查交叉行
+        // 这里用花括号 "{}" 可以让 win 变量
+        // 变成独立作用域的变量，不受外面的
+        // win 变量影响
+
+        // "反斜行 \ 检测"
+        {
+            let win = true;
+            for (let j = 0; j < 3; j++) {
+                if (pattern[j][j] !== chess) win = false;
+            }
+            if (win) return true;
+        }
+
+        // "正斜行 / 检测"
+        {
+            let win = true;
+            for (let j = 0; j < 3; j++) {
+                if (pattern[j][2 - j] !== chess) win = false;
+            }
+            if (win) return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 插入提示
+     * @param {String} message 提示文案
+     */
+    function tips(message) {
+        let tips = document.getElementById('tips');
+
+        tips.innerHTML = '';
+
+        let text = document.createElement('p');
+        text.innerText = message;
+        tips.appendChild(text);
+
+        // replayBtn();
+    }
+
+    function restartBtn() {
+        let but = document.getElementById('but');
+        but.innerHTML = '';
+        let button = document.createElement('button');
+        button.classList.add('btn', 'two')
+        button.innerText = "再来一局";
+        button.addEventListener('click', () => restart());
+        but.appendChild(button);
+    }
+
+    // 重新开始游戏
+    function restart() {
+
+    }
+
+    // 判断是否还有空位
+    function isVacancy(pattern) {
+        for (let y = 0; y < 3; y++) {
+            for (let x = 0; x < 3; x++) {
+                if (pattern[y][x] == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // // 初始化棋盘
+    // function initPattern() {
+    //     let board = document.getElementById('board');
+    //     let tips = document.getElementById('tips');
+    //     let replay = document.getElementById('replay');
+    //     tips.innerHTML = '';
+    //     board.innerHTML = '';
+    //     replay.innerHTML = '';
+    //     pattern = [
+    //         [0, 0, 0],
+    //         [0, 0, 0],
+    //         [0, 0, 0]
+    //     ];
+    //     hasWinner = false;
+    // }
+
+    // 移除事件
+    function removeEvent() {
+
+    }
+</script>
+
+</html>
