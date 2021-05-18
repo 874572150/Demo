@@ -9,6 +9,13 @@ import $ from 'jquery'
 
 Vue.config.productionTip = false
 
+import '@/assets/styles/index.scss' // global css
+import '@/assets/styles/ruoyi.scss' // ruoyi css
+
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(Element)
+
 // 配置全局常量
 Vue.prototype.GLOBAL = globalConstant;
 

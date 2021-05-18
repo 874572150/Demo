@@ -11,13 +11,13 @@ export default new Router({
     // },
     {
       path: '/',
-      redirect: '/nav'
+      redirect: '/login'
     },
-    // {
-    //   path: '/login',
-    //   name: 'login',
-    //   component: resolve => require(['../pages/CWeb/login.vue'], resolve),
-    // },
+    {
+      path: '/login',
+      name: 'login',
+      component: resolve => require(['@/views/login.vue'], resolve),
+    },
     {
       path: '/nav',
       name: 'nav',
