@@ -10,6 +10,7 @@
         <module>os-common</module>
         <module>os-admin</module>
         <module>os-framework</module>
+        <module>os-test</module>
     </modules>
     <name>myframe</name>
     <description>Demo project for Spring Boot</description>
@@ -20,106 +21,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
         <druid.version>1.2.4</druid.version>
+        <swagger.version>2.9.2</swagger.version>
+        <knife4j.version>2.0.3</knife4j.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+        <fastjson.version>1.2.76</fastjson.version>
     </properties>
-
-    <dependencies>
-<!--        &lt;!&ndash; jdbc &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; mysql connector  &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; jpa &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis.spring.boot</groupId>-->
-<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--            <version>2.1.2</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; spring-data-commons &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.data</groupId>-->
-<!--            <artifactId>spring-data-commons</artifactId>-->
-<!--            <version>${spring-boot.version}</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; lombok &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.projectlombok</groupId>-->
-<!--            <artifactId>lombok</artifactId>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-test</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.junit.vintage</groupId>-->
-<!--                    <artifactId>junit-vintage-engine</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>commons-lang</groupId>-->
-<!--            <artifactId>commons-lang</artifactId>-->
-<!--            <version>2.6</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; shiro &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.shiro</groupId>-->
-<!--            <artifactId>shiro-spring</artifactId>-->
-<!--            <version>1.6.0</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; fastjson &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba</groupId>-->
-<!--            <artifactId>fastjson</artifactId>-->
-<!--            <version>1.2.68</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; redis&ndash;&gt;-->
-<!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
-<!--            &lt;!&ndash;<groupId>org.springframework.boot</groupId>&ndash;&gt;-->
-<!--            &lt;!&ndash;<artifactId>spring-data-starter-data-redis</artifactId>&ndash;&gt;-->
-<!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
-<!--        &lt;!&ndash; jwt &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.auth0</groupId>-->
-<!--            <artifactId>java-jwt</artifactId>-->
-<!--            <version>3.10.3</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; excel文档&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.poi</groupId>-->
-<!--            <artifactId>poi</artifactId>-->
-<!--            <version>3.16</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; crypt加密 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.mindrot</groupId>-->
-<!--            <artifactId>jbcrypt</artifactId>-->
-<!--            <version>0.4</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.poi</groupId>-->
-<!--            <artifactId>poi-ooxml</artifactId>-->
-<!--            <version>3.16</version>-->
-<!--        </dependency>-->
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -137,6 +43,37 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+
+            <!-- swagger-ui -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <!-- knife4j -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-dependencies</artifactId>
+                <version>${knife4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--验证码 -->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -158,7 +95,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.0.RELEASE</version>
                 <configuration>
-                    <mainClass>cn.os.myframe.MyframeApplication</mainClass>
+                    <mainClass>cn.os.admin.myframe.MyframeApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
