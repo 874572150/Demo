@@ -14,6 +14,7 @@ import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.authz.ModularRealmAuthorizer;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.mgt.SessionStorageEvaluator;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;

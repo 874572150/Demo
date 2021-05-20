@@ -11,6 +11,7 @@
         <module>os-admin</module>
         <module>os-framework</module>
         <module>os-test</module>
+        <module>os-generator</module>
     </modules>
     <name>myframe</name>
     <description>Demo project for Spring Boot</description>
@@ -25,6 +26,8 @@
         <knife4j.version>2.0.3</knife4j.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <fastjson.version>1.2.76</fastjson.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <freemarker.version>2.3.31</freemarker.version>
     </properties>
 
     <dependencyManagement>
@@ -74,6 +77,27 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus generator-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- freemarker -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

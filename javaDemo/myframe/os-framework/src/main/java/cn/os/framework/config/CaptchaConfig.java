@@ -1,4 +1,4 @@
-package cn.os.admin.framework.config;
+package cn.os.framework.config;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
