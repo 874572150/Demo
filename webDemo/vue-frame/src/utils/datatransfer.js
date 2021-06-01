@@ -38,28 +38,15 @@ export const jsonToArray = (nodes) => {
     return r;
 }
 
-// 初始化表单数据
-export const initFormData = (formData) => {
-    for (let key in formData) {
-        if (formData[key] instanceof Array) {
-            formData[key] = [];
-        } else if (formData[key] instanceof Object) {
-            initFormData(formData[key]);
-        } else if (typeof formData[key] == "boolean") {
-            formData[key] = false;
-        } else {
-            formData[key] = "";
-        }
-    }
-}
-
 // 从oldJson中将oldJson和newJson中均存在的属性进行深拷贝
-export const commPropCopy = (newJson = {}, oldJson = {}) => {
+export const copyBean = (oldJson = {}, newJson = {}) => {
+    console.log(oldJson)
     if (Object.prototype.toString.call(oldJson) == "[object Object]") {
         for (var key in oldJson) {
-            if (newJson[key] != undefined) {
+            if (typeof (newJson[key]) != "undefined") {
+                console.log(key)
                 if (Object.prototype.toString.call(oldJson[key]) == "[object Object]") {
-                    commPropCopy(newJson[key], oldJson[key]);
+                    copyBean(newJson[key], oldJson[key]);
                 } else {
                     newJson[key] = oldJson[key]
                 }

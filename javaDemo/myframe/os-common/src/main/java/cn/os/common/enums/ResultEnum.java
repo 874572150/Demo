@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * @Author ou shuo
  * @Date 2021/5/19 14:46
- * @TODO 返回消息枚举类
+ * @description  返回消息枚举类
  */
 @Getter
 public enum ResultEnum {

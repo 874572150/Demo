@@ -10,35 +10,35 @@ import io.swagger.annotations.ApiModelProperty;
 <#if entityLombokModel>
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-    <#if chainModel>
+<#if chainModel>
 import lombok.experimental.Accessors;
-    </#if>
 </#if>
-import com.siemens.ems.common.base.dto.BasePageRquest;
+</#if>
+import com.siemens.ems.common.base.dto.BasePageRequest;
 
 /**
- * <p>
- * ${table.comment!} 分页传输对象
- * </p>
- *
- * @author ${author}
- * @date ${date}
- */
+* <p>
+* ${table.comment!} 分页传输对象
+* </p>
+*
+* @author ${author}
+* @date ${date}
+*/
 <#if entityLombokModel>
 @Data
-    <#if superEntityClass??>
+<#if superEntityClass??>
 @EqualsAndHashCode(callSuper = true)
-    <#else>
+<#else>
 @EqualsAndHashCode
-    </#if>
-    <#if chainModel>
+</#if>
+<#if chainModel>
 @Accessors(chain = true)
-    </#if>
+</#if>
 </#if>
 <#if swagger2>
 @ApiModel(value="${entity}PageDTO分页传输对象", description="${table.comment!}分页传输对象")
 </#if>
-public class ${entity}PageDTO extends BasePageRquest implements Serializable {
+public class ${entity}PageDTO extends BasePageRequest implements Serializable {
 
 <#if entitySerialVersionUID>
     private static final long serialVersionUID = 1L;
@@ -53,12 +53,12 @@ public class ${entity}PageDTO extends BasePageRquest implements Serializable {
     </#if>
 
     <#if field.comment!?length gt 0>
-        <#if swagger2>
+    <#if swagger2>
     @ApiModelProperty(value = "${field.comment}")
-        <#else>
-    /**
-     * ${field.comment}
-     */
+    <#else>
+            /**
+            * ${field.comment}
+            */
         </#if>
     </#if>
     private ${field.propertyType} ${field.propertyName};
@@ -72,26 +72,26 @@ public class ${entity}PageDTO extends BasePageRquest implements Serializable {
         <#else>
             <#assign getprefix="get"/>
         </#if>
-    public ${field.propertyType} ${getprefix}${field.capitalName}() {
+        public ${field.propertyType} ${getprefix}${field.capitalName}() {
         return ${field.propertyName};
-    }
+        }
 
-    <#if chainModel>
-    public ${entity} set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
-    <#else>
-    public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
-    </#if>
+        <#if chainModel>
+            public ${entity} set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
+        <#else>
+            public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
+        </#if>
         this.${field.propertyName} = ${field.propertyName};
         <#if chainModel>
-        return this;
+            return this;
         </#if>
-    }
+        }
     </#list>
 </#if>
 
 <#if entityColumnConstant>
     <#list table.fields as field>
-    public static final String ${field.name?upper_case} = "${field.name}";
+        public static final String ${field.name?upper_case} = "${field.name}";
 
     </#list>
 </#if>
@@ -99,7 +99,7 @@ public class ${entity}PageDTO extends BasePageRquest implements Serializable {
 <#if !entityLombokModel>
     @Override
     public String toString() {
-        return "${entity}{" +
+    return "${entity}{" +
     <#list table.fields as field>
         <#if field_index==0>
             "${field.propertyName}=" + ${field.propertyName} +
@@ -107,7 +107,7 @@ public class ${entity}PageDTO extends BasePageRquest implements Serializable {
             ", ${field.propertyName}=" + ${field.propertyName} +
         </#if>
     </#list>
-        "}";
+    "}";
     }
 </#if>
 }
